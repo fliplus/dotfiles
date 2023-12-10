@@ -1,0 +1,27 @@
+window:
+  padding:
+    x: 2
+    y: 2
+
+font:
+  normal:
+    family: JetBrainsMono Nerd Font
+    style: Medium
+  bold:
+    family: JetBrainsMono Nerd Font
+    style: Bold
+  italic:
+    family: JetBrainsMono Nerd Font
+    style: MediumItalic
+  bold_italic:
+    family: JetBrainsMono Nerd Font
+    style: BoldItalic
+  size: 13
+
+#cursor:
+#  style:
+#    shape: Beam
+#    blinking: Always
+
+import:
+  - ~/.config/alacritty/themes/catppuccin/catppuccin-mocha.yml
