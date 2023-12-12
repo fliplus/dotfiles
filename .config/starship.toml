@@ -1,0 +1,6 @@
+right_format = '$cmd_duration'
+
+add_newline = false
+
+[line_break]
+disabled = true
