@@ -19,4 +19,7 @@ source ~/.config/zsh/zsh-history-substring-search/zsh-history-substring-search.z
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
+echo ""
+neofetch --config ~/.config/neofetch/blockfetch.conf
+
 eval "$(starship init zsh)"
