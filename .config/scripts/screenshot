@@ -1,0 +1,25 @@
+#!/bin/sh
+
+resolutionOptions="Select\nHDMI-0\nHDMI-1"
+saveOptions="Save\nClipboard\nBoth"
+
+selectedResolution=$(echo -e "$resolutionOptions" | dmenu -i)
+selectedSaveOption=$(echo -e "$saveOptions" | dmenu -i)
+
+case "$selectedResolution" in
+    Select) case "$selectedSaveOption" in
+        Save) maim -s ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H:%M:%S).png ;;
+        Clipboard) maim -s | xclip -selection clipboard -t image/png ;;
+        Both) maim -s ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H:%M:%S).png && maim -s | xclip -selection clipboard -t image/png ;;
+    esac ;;
+    HDMI-0) case "$selectedSaveOption" in
+        Save) maim -g 1920x1080 ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H:%M:%S).png ;;
+        Clipboard) maim -g 1920x1080 | xclip -selection clipboard -t image/png ;;
+        Both) maim -g 1920x1080 ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H:%M:%S).png && maim -g 1920x1080 | xclip -selection clipboard -t image/png ;;
+    esac ;;
+    HDMI-1) case "$selectedSaveOption" in
+        Save) maim -g 1920x1080+1920+0 ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H:%M:%S).png ;;
+        Clipboard) maim -g 1920x1080+1920+0 | xclip -selection clipboard -t image/png ;;
+        Both) maim -g 1920x1080+1920+0 ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H:%M:%S).png && maim -g 1920x1080+1920+0 | xclip -selection clipboard -t image/png ;;
+    esac ;;
+esac

@@ -1,0 +1,18 @@
+#!/bin/sh
+
+shutdownOptions="Shutdown\nReboot"
+confirmationOptions="Yes\nNo"
+
+selectedOption=$(echo -e "$shutdownOptions" | dmenu -i)
+selectedConfimation=$(echo -e "$confirmationOptions" | dmenu -i)
+
+case "$selectedOption" in
+    Shutdown) case "$selectedConfimation" in
+        Yes) shutdown now ;;
+        No) exit ;;
+    esac ;;
+    Reboot) case "$selectedConfimation" in
+        Yes) reboot ;;
+        No) exit ;;
+    esac ;;
+esac
