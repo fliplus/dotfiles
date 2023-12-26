@@ -3,8 +3,8 @@
 shutdownOptions="Shutdown\nReboot"
 confirmationOptions="Yes\nNo"
 
-selectedOption=$(echo -e "$shutdownOptions" | dmenu -i)
-selectedConfimation=$(echo -e "$confirmationOptions" | dmenu -i)
+selectedOption=$(echo -e "$shutdownOptions" | dmenu -i -p "Shutdown option:")
+selectedConfimation=$(echo -e "$confirmationOptions" | dmenu -i -p "Are you sure?")
 
 case "$selectedOption" in
     Shutdown) case "$selectedConfimation" in
