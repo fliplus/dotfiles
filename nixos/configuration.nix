@@ -68,6 +68,9 @@
     root.directories = [
       "/var/lib/nixos"
     ];
+    root.files = [
+      "/etc/machine-id"
+    ];
     home.directories = [
       "dotfiles"
     ];

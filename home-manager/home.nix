@@ -47,6 +47,7 @@
 
       ".config/1Password"
       ".config/vesktop"
+      ".config/spotify"
       ".local/share/PrismLauncher"
     ];
   };
