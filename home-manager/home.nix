@@ -5,6 +5,7 @@
     ./alacritty.nix
     ./firefox.nix
     ./hyprland.nix
+    ./neovim.nix
     ./impermanence.nix
     ./shell.nix
     ./theme.nix
@@ -22,7 +23,6 @@
 
     packages = with pkgs; [
       _1password-gui
-      neovim
       prismlauncher
       spotify
       vesktop

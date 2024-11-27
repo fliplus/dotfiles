@@ -19,6 +19,7 @@
 
     shellAliases = {
       vim = "nvim";
+      v = "nvim";
     };
 
     autosuggestion.enable = true;

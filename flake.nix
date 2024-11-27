@@ -17,6 +17,11 @@
     };
 
     hyprland.url = "github:hyprwm/Hyprland";
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, ... } @ inputs:
@@ -43,6 +48,7 @@
           home-manager.extraSpecialArgs = { inherit pkgs inputs host user; };
           home-manager.users.${user} = {
             imports = [
+              inputs.nixvim.homeManagerModules.nixvim
               ./home-manager/home.nix
             ];
           };
