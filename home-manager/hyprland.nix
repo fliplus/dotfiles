@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, host, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -14,9 +14,6 @@
         "HDMI-A-1, 1920x1080@240, 0x0, 1"
         "DP-1, 1920x1080@144, 1920x0, 1"
       ];
-
-      "$terminal" = "alacritty";
-      "$menu" = "wofi --show drun";
 
       exec-once = [
         "swww-daemon"
@@ -52,7 +49,7 @@
         blur = {
           enabled = true;
           size = 3;
-          passes = 1;
+          passes = 2;
 
           vibrancy = 0.1696;
         };
@@ -68,15 +65,15 @@
       animations = {
         enabled = true;
 
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+        bezier = "overshot, 0.05, 0.9, 0.1, 1.05";
 
         animation = [
-          "windows, 1, 7, myBezier"
-          "windowsOut, 1, 7, default, popin 80%"
-          "border, 1, 10, default"
+          "windows, 1, 5, overshot, slide"
+          "windowsOut, 1, 5, default, slide"
+          "border, 1, 5, default"
           "borderangle, 1, 8, default"
-          "fade, 1, 7, default"
-          "workspaces, 1, 6, default"
+          "fade, 1, 5, default"
+          "workspaces, 1, 5, default"
         ];
       };
 
@@ -96,8 +93,8 @@
       "$mod" = "SUPER";
 
       bind = [
-        "$mod, Q, exec, $terminal"
-        "$mod, R, exec, $menu"
+        "$mod, Q, exec, alacritty"
+        "$mod, R, exec, wofi --show drun"
         "$mod, B, exec, firefox"
         "$mod, D, exec, vesktop"
 
@@ -106,23 +103,25 @@
         "$mod, V, togglefloating,"
         "$mod, P, pseudo,"
         "$mod, J, togglesplit,"
+
         "$mod, F, fullscreen,"
+        "$mod ALT, F, fullscreenstate, 0 2"
 
         "$mod, left, movefocus, l"
         "$mod, right, movefocus, r"
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
 
-        "$mod, S, togglespecialworkspace, magic"
-        "$mod SHIFT, S, movetoworkspace, special:magic"
+        "$mod, W, togglespecialworkspace, scratchpad"
+        "$mod SHIFT, W, movetoworkspace, special:scratchpad"
       ] ++ (
         builtins.concatLists (builtins.genList (i:
           let
-            key = builtins.toString (i + 1 - ((i + 1) / 10) * 10);
+            bind = builtins.toString (i + 1 - ((i + 1) / 10) * 10);
             workspace = toString (i + 1);
           in [
-              "$mod, ${key}, workspace, ${workspace}"
-              "$mod SHIFT, ${key}, movetoworkspace, ${workspace}"
+              "$mod, ${bind}, workspace, ${workspace}"
+              "$mod SHIFT, ${bind}, movetoworkspace, ${workspace}"
           ]
         ) 10)
       );
