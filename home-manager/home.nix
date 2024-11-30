@@ -1,4 +1,4 @@
-{ config, pkgs, user, ... }:
+{ lib, pkgs, user, ... }:
 
 {
   imports = [
@@ -11,44 +11,51 @@
     ./theme.nix
   ];
 
-  home = {
-    stateVersion = "24.05"; # Don't change this value.
-
-    username = user;
-    homeDirectory = "/home/${user}";
-
-    sessionVariables = {
-      EDITOR = "nvim";
-    };
-
-    packages = with pkgs; [
-      _1password-gui
-      prismlauncher
-      spotify
-      vesktop
-      wofi
-    
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    ];
+  options.custom = with lib; {
+    isLaptop = mkEnableOption "isLaptop";
   };
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  config = {
+    home = {
+      stateVersion = "24.05"; # Don't change this value.
 
-  xdg.enable = true;
+      username = user;
+      homeDirectory = "/home/${user}";
 
-  fonts.fontconfig.enable = true;
+      sessionVariables = {
+        EDITOR = "nvim";
+      };
 
-  custom.persist.home = {
-    directories = [
-      "Downloads"
-      "Pictures"
-      "Games"
+      packages = with pkgs; [
+        _1password-gui
+        prismlauncher
+        spotify
+        vesktop
+        wofi
 
-      ".config/1Password"
-      ".config/vesktop"
-      ".config/spotify"
-      ".local/share/PrismLauncher"
-    ];
+        (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      ];
+    };
+
+    # Let Home Manager install and manage itself.
+    programs.home-manager.enable = true;
+
+    xdg.enable = true;
+
+    fonts.fontconfig.enable = true;
+
+    custom.persist.home = {
+      directories = [
+        "dev"
+        "Downloads"
+        "Games"
+        "Pictures"
+
+        ".config/1Password"
+        ".config/spotify"
+        ".config/vesktop"
+        ".local/share/PrismLauncher"
+      ];
+    };
   };
 }

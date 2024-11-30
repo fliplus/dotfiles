@@ -17,8 +17,6 @@ in
   };
 
   custom.persist = {
-    home.directories = [
-      ".mozilla"
-    ];
+    home.directories = [ ".mozilla" ];
   };
 }

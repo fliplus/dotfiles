@@ -95,11 +95,7 @@
   };
 
   custom.persist = {
-    home.directories = [
-      ".local/share/zoxide"
-    ];
-    home.files = [
-      ".local/share/zsh/zsh_history"
-    ];
+    home.directories = [ ".local/share/zoxide" ];
+    home.files = [ ".local/share/zsh/zsh_history" ];
   };
 }

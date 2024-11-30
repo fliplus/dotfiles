@@ -67,13 +67,9 @@
   custom.persist = {
     root.directories = [
       "/var/lib/nixos"
-    ];
-    root.files = [
-      "/etc/machine-id"
-    ];
-    home.directories = [
-      "dotfiles"
-    ];
+    ] ++ lib.optionals config.hm.custom.isLaptop [ "/etc/NetworkManager" ];
+    root.files = [ "/etc/machine-id" ];
+    home.directories = [ "dotfiles" ];
   };
 
   system.stateVersion = "24.05"; # Don't change this value.

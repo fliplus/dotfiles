@@ -53,6 +53,12 @@
             ];
           };
         }
+
+        (nixpkgs.lib.mkAliasOptionModule [ "hm" ] [
+          "home-manager"
+          "users"
+          user
+        ])
       ];
     };
   };

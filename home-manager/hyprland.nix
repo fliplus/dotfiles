@@ -171,8 +171,6 @@
   };
 
   custom.persist = {
-    home.directories = [
-      ".cache/swww"
-    ];
+    home.directories = [ ".cache/swww" ];
   };
 }

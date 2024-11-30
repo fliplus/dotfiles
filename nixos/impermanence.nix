@@ -4,7 +4,6 @@ let
     paths:
     assert (lib.assertMsg (!lib.any (lib.hasPrefix "/home") paths) "/home used in a root persist.");
     paths;
-  homeConfig = config.home-manager.users.${user};
 in
 {
   options.custom = with lib; {
@@ -71,8 +70,8 @@ in
       files = [ ] ++ config.custom.persist.root.files;
 
       users.${user} = {
-        directories = [ ] ++ config.custom.persist.home.directories ++ homeConfig.custom.persist.home.directories;
-        files = [ ] ++ config.custom.persist.home.files ++ homeConfig.custom.persist.home.files;
+        directories = [ ] ++ config.custom.persist.home.directories ++ config.hm.custom.persist.home.directories;
+        files = [ ] ++ config.custom.persist.home.files ++ config.hm.custom.persist.home.files;
       };
     };
 
@@ -87,10 +86,10 @@ in
         echo "${builtins.concatStringsSep "\n" config.custom.persist.root.files}" | sort
         echo ""
         echo "Persisted home directories:"
-        echo "${builtins.concatStringsSep "\n" (config.custom.persist.home.directories ++ homeConfig.custom.persist.home.directories)}" | sort
+        echo "${builtins.concatStringsSep "\n" (config.custom.persist.home.directories ++ config.hm.custom.persist.home.directories)}" | sort
         echo ""
         echo "Persisted home files:"
-        echo "${builtins.concatStringsSep "\n" (config.custom.persist.home.files ++ homeConfig.custom.persist.home.files)}" | sort
+        echo "${builtins.concatStringsSep "\n" (config.custom.persist.home.files ++ config.hm.custom.persist.home.files)}" | sort
       '')
     ];
   };
