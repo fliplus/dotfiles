@@ -49,6 +49,7 @@
           home-manager.users.${user} = {
             imports = [
               inputs.nixvim.homeManagerModules.nixvim
+
               ./home-manager/home.nix
             ];
           };
