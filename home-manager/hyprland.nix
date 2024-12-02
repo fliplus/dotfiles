@@ -8,11 +8,11 @@
         options = {
           name = mkOption {
             description = "Name of the display";
-            type = string;
+            type = str;
           };
           resolution = mkOption {
             description = "Resolution of the display";
-            type = string;
+            type = str;
           };
           refreshRate = mkOption {
             description = "Refresh rate of the display";
@@ -20,7 +20,7 @@
           };
           position = mkOption {
             description = "Position of the display";
-            type = string;
+            type = str;
           };
           workspaces = mkOption {
             description = "List of workspace numbers";
@@ -178,11 +178,11 @@
           ", XF86AudioPrev, exec, playerctl previous"
         ];
 
-        workspace = [ ] ++ lib.optionals (lib.length config.custom.monitors > 1) lib.flatten (lib.forEach config.custom.monitors (monitor:
+        workspace = [ ] ++ lib.optionals (lib.length config.custom.monitors > 1) (lib.flatten (lib.forEach config.custom.monitors (monitor:
           (lib.forEach monitor.workspaces (workspace:
             "${toString workspace}, monitor:${monitor.name}"
           ))
-        ));
+        )));
 
         windowrulev2 = [
           "suppressevent maximize, class:.*"
