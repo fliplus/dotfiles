@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, host, ... }:
 
 {
   options.custom = with lib; {
@@ -119,6 +119,11 @@
 
         input = {
           kb_layout = "us";
+
+          touchpad = lib.mkIf (host == "twolessone") {
+            disable_while_typing = false;
+            natural_scroll = true;
+          };
         };
 
         "$mod" = "SUPER";

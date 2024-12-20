@@ -102,6 +102,16 @@
       scrolloff = 8;
     };
 
+    files = {
+      "after/ftplugin/nix.lua" = {
+        localOpts = {
+          tabstop = 2;
+          softtabstop = 2;
+          shiftwidth = 2;
+        };
+      };
+    };
+
     colorschemes.tokyonight = {
       enable = true;
       settings.style = "night";
