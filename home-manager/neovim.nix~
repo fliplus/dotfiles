@@ -8,7 +8,7 @@
           enable = true;
           name = "tokyonight";
           style = "night";
-          transparent = true;
+          #transparent = true;
         };
 
         statusline.lualine.enable = true;

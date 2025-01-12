@@ -31,7 +31,7 @@
       config.allowUnfree = true;
     };
 
-    host = "onemore";
+    host = "twolessone";
     user = "flip";
   in
   {

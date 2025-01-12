@@ -27,7 +27,7 @@
   networking.hostName = host;
   networking.networkmanager = {
     enable = true;
-    insertNameservers = [ "1.1.1.1" ];
+    insertNameservers = [ "1.1.1.1" "1.0.0.1" ];
   };
 
   time.timeZone = "Europe/Lisbon";
